@@ -1,8 +1,8 @@
 trigger: [main]
-pool: {name: 'mypool2'}
+pool: {name: 'mypool3'}
 
 steps:
-- checkout:self
+- checkout: self
 - script: mvn clean test
 
 - task: PublishTestResults@2
