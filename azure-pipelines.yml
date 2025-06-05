@@ -1,0 +1,12 @@
+trigger: [main]
+pool: {name: 'mypool2'}
+
+steps:
+- checkout:self
+- script: mvn clean test
+
+- task: PublishTestResults@2
+  inputs: {testResultsFiles: '**/target/surefire-reports/TEST-*.xml',testResultsFormat: 'JUnit',failTaskOnMissingResultsFile: true}
+
+- task: PublishBuildArtifacts@1
+  inputs: {PathtoPublish: 'target',ArtifactName: 'drop',publishLocation: 'Container'}
